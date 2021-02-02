@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../src/function/call.js"></script>
+ 
+</head>
+<body>
+  <script>
+    function Product(name, price) {
+      this.name = name;
+      this.price = price;
+    }
+
+    function Food(name, price) {
+      // myCall(this, Product,name, price);
+      Product.call(this, name, price);
+      this.category = 'food';
+    }
+
+    console.log(new Food('cheese', 5).name);
+    // expected output: "cheese"
+
+      function add(a,b){
+        console.log(this)
+        return a+b+this.c
+      }
+      let obj = {
+        c:100
+      }
+      window.c = 1000
+      console.log(myCall(add,null,1,2))
+      console.log(add.call(obj,1,2))
+
+  </script>
+</body>
+</html>
