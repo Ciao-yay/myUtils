@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../src/function/apply.js"></script>
+  <script>
+    function add(a, b) {
+      // console.log(this)
+      return a + b + this.c
+    }
+    function add2() {
+      // console.log(this)
+      return 2 + this.c
+    }
+    let obj = {
+      c: 100
+    }
+    window.c = 1000
+    // console.log(myCall(add2, null, 1, 2))
+    console.log(add2.myApply())
+    console.log(add2.apply(obj,2))
+    // console.log(myApply(add2,obj, 2))
+
+  </script>
+</body>
+
+</html>

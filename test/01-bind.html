@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <script src="../src/function/bind.js"></script> -->
+  <script>
+    Function.prototype.myBind = function (thisArg, ...args) {
+      var self = this
+      // new优先级
+      var fbound = function () {
+        self.apply(this instanceof self ? this : thisArg, args.concat(Array.prototype.slice.call(arguments)))
+      }
+      // 继承原型上的属性和方法
+      fbound.prototype = Object.create(self.prototype);
+
+      return fbound;
+    }
+
+    function add(a, b) {
+      // console.log(this)
+      return a + b + this.c
+    }
+    function add2() {
+      // console.log(this)
+      return 2 + this.c
+    }
+    let obj = {
+      c: 100
+    }
+    window.c = 1000
+    let fn = add.bind(obj)
+    let fn1 = add.myBind(obj)
+
+    console.log(fn(1, 2))
+    console.log(fn1(1, 2))
+    //测试
+    const obj1 = { name: '写代码像蔡徐抻' }
+    function foo() {
+      console.log(this.name)
+      console.log(arguments)
+    }
+
+    foo.myBind(obj1, 'a', 'b', 'c')()    //输出写代码像蔡徐抻 ['a', 'b', 'c']
+    foo.bind(obj1, 'a', 'b', 'c')()
+  </script>
+</body>
+
+</html>

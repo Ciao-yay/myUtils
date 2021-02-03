@@ -9,6 +9,7 @@
 </head>
 <body>
   <script>
+    // 继承小例子
     function Product(name, price) {
       this.name = name;
       this.price = price;
@@ -16,7 +17,7 @@
 
     function Food(name, price) {
       // myCall(this, Product,name, price);
-      Product.call(this, name, price);
+      Product.myCall(this, name, price);
       this.category = 'food';
     }
 
@@ -24,15 +25,20 @@
     // expected output: "cheese"
 
       function add(a,b){
-        console.log(this)
+        // console.log(this)
         return a+b+this.c
+      }
+      function add2(){
+        // console.log(this)
+        return 2+this.c
       }
       let obj = {
         c:100
       }
       window.c = 1000
-      console.log(myCall(add,null,1,2))
-      console.log(add.call(obj,1,2))
+      console.log(myCall(add2,null,1,2))
+      console.log(add2.myCall1())
+      console.log(add2.myCall1(obj,1,2))
 
   </script>
 </body>

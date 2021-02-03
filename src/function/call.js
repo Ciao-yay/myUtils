@@ -53,29 +53,37 @@
 */
 
 // 手写call
+/* 
+  a.call(b,1,2)
+  a 方法给 b 用
+  调用 a 方法，但是 this 值指向 b
+
+  用法
+  1. 继承
+*/ 
 Function.prototype.myCall = function(thisArg,...args){
-  // this当前
-  thisArg = thisArg || window
-  const fn = Symbol('fn')
-  thisArg[fn] = this
-  let res = thisArg[fn](...args)
+  // this 代表当前调用 myCall 函数的对象
+  // 思路，在指定运行环境 thisArg 中模拟运行调用方法
+  thisArg = thisArg || window // 运行环境，不指定第一个值时，默认指向window
+  const fn = Symbol('fn') // Symbol 分配唯一空间，避免重名方法覆盖
+  thisArg[fn] = this // 改变指向，将调用对象放到指定的运行环境中运行
+  let res = thisArg[fn](...args) // 在指定的环境中运行
+  delete thisArg[fn] // 删除模拟的方法
   return res
-
 }
+// 也可以不写形参，通过 arguments 读取参数伪数组并转换成数组
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+Function.prototype.myCall1 = function(thisArg){
+  // this 代表当前调用 myCall 函数的对象
+  // 思路，在指定运行环境 thisArg 中模拟运行调用方法
+  thisArg = thisArg || window // 运行环境，不指定第一个值时，默认指向 window
+  const fn = Symbol('fn') // Symbol 分配唯一空间，避免重名方法覆盖
+  thisArg[fn] = this // 改变指向，将调用对象放到指定的运行环境中运行
+  const args = [...arguments].slice(1) // 将参数伪数组转换成数组，并且不要第一个值（thisArg）
+  let res = thisArg[fn](...args) // 在指定的环境中运行
+  delete thisArg[fn] // 删除模拟的方法
+  return res
+}
 function myCall(Fn,thisArg, ...args) {
   if(typeof Fn !== 'function') {
     throw new TypeError('error')
