@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../src/array/methods/map.js"></script>
+  <script src="../src/array/methods/reduce.js"></script>
+  <script>
+
+    /* 
+      map
+    */
+    let arr = [1, 2, 3]
+    let arr2 = [1, 2, 4]
+    // console.log(arr.map(i => i + 1))
+    // console.log(arr.myMap(i => i + 1))
+    // console.log(map(arr, i => i + 1))
+    // console.log(["1", "2", "3"].map(parseInt))
+    // console.log(["1", "2", "3"].myMap(parseInt))
+    // console.log([,,3].forEach())
+    var maxCallback2 = (max, cur) => Math.max(max, cur);
+
+    /* reduce  */
+    // 
+    // console.log([]
+    //   .reduce(maxCallback2, -Infinity));
+    // console.log([1, 2, 2].reduce((accumulator, currentValue) => { console.log(currentValue, accumulator) }))
+    // console.log([1, 2].myReduce((accumulator, currentValue, i) => {
+    //   console.log(accumulator, currentValue, i)
+    //   return accumulator + currentValue
+    // },2))
+    // 应用
+    // 计算重复值
+    const subs = ["Chinses", "English", "English", "Chinses", "Math", "Physics", "English", "Chemistry"]
+    const subsCount = subs.reduce((prev, cur) => {
+      if (cur in prev) {
+        prev[cur]++
+      } else {
+        prev[cur] = 1
+      }
+      return prev
+    }, {})
+    // console.log(subsCount)
+    // 去重
+    const subsRe = subs.reduce((prev, cur, i, arr) => {
+      // if (arr.indexOf(cur) === i) {
+      //   prev.push(cur)
+      // }
+      if (!prev.includes(cur)) prev.push(cur)
+      return prev
+    }, [])
+    // console.log(subsRe)
+
+    /* 
+      filter
+
+    */
+    const resFilter = [2, 1, 3, 4, 5, 6].filter(item => {
+      console.log(this)
+      return item > 2, [2, 6, 6, 5, 4]
+    })
+    console.log(resFilter)
+  </script>
+</body>
+
+</html>
