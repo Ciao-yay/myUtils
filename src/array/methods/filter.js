@@ -16,6 +16,22 @@
   返回值
   一个新的、由通过测试的元素组成的数组，如果没有任何数组元素通过测试，则返回空数组。
 */
-Array.prototype.myFilter = function(callback,thisArg=null){
-
+Array.prototype.myFilter = function (callback, thisArg) {
+  // 保证传入的第一个参数是回调函数
+  if (typeof callback !== 'function') {
+    throw new TypeError(`${callback} is not a function`)
+  }
+  // 对指定 this 值做处理
+  // globalThis 新语法指向全局属性
+  thisArg = thisArg || globalThis
+  // 指定对象
+  let context = this
+  // 新数组
+  let res = []
+  for (let i = 0; i < context.length; i++) {
+    if (callback.call(thisArg, context[i], i, context)) {
+      res.push(context[i])
+    }
+  }
+  return res
 }
