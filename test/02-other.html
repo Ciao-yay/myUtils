@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../src/array/other/unique.js"></script>
+  <script src="../src/array/other/concat.js"></script>
+  <script>
+    /* 
+      去重，
+      判断方法
+      1. 遍历时当前元素是否在数组中
+      2. 遍历时当前元素索引是否等于数组中第一次出现该元素的索引
+    */
+    // console.log(unique1([1, 1, 2, 4, 3, 3, 6, 5, 4]))
+    // console.log(unique2([1, 1, 2, 4, 3, 3, 6, 5, 4]))
+    // console.log(unique3([1, 1, 2, 4, 3, 3, 6, 5, 4]))
+    // console.log(unique4([1, 1, 2, 4, 3, 3, 6, 5, 4]))
+
+    /* 
+      合并
+    */
+    var alpha = ['a', 'b', 'c'];
+    var numeric = [1, 2, 3];
+    let a1 = alpha.concat(numeric)
+    let a2 = alpha.myConcat(numeric)
+    // console.log(alpha)
+    // console.log(a1)
+    // console.log(a2)
+
+    /* 
+      切片
+    */
+    console.log(alpha.slice(4))
+    console.log(alpha[-1])
+
+  </script>
+</body>
+
+</html>
